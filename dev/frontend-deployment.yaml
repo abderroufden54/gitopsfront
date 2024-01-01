@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+        - name: frontend-container
+          image: frontfac.azurecr.io/front:latest
+          ports:
+            - containerPort: 3000
+          env:
+            - name: REACT_APP_BACKENDURL
+              valueFrom:
+                configMapKeyRef:
+                  name: frontend-configmap
+                  key: REACT_APP_BACKENDURL
+            - name: REACT_APP_CHEF
+              valueFrom:
+                configMapKeyRef:
+                  name: frontend-configmap
+                  key: REACT_APP_CHEF
+            - name: REACT_APP_USERURL
+              valueFrom:
+                configMapKeyRef:
+                  name: frontend-configmap
+                  key: REACT_APP_USERURL
+            - name: REACT_APP_IMAGESURL
+              valueFrom:
+                configMapKeyRef:
+                  name: frontend-configmap
+                  key: REACT_APP_IMAGESURL
+            - name: REACT_APP_PAGENUMBER
+              valueFrom:
+                configMapKeyRef:
+                  name: frontend-configmap
+                  key: REACT_APP_PAGENUMBER                  
+      imagePullSecrets:
+        - name: acrf-secret
+
+
