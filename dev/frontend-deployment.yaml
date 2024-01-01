@@ -1,10 +1,10 @@
-#2
+#3
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: frontend-deployment
   annotations:
-    version: "2"
+    version: "3"
 spec:
   replicas: 1
   selector:
@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: frontend-container
-          image: frontfac.azurecr.io/front:latest
+          image: frontfac.azurecr.io/front:3
           ports:
             - containerPort: 3000
           env:
