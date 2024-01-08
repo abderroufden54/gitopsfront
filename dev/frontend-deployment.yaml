@@ -1,10 +1,10 @@
-#5
+#6
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: frontend-deployment
   annotations:
-    version: "5"
+    version: "6"
 spec:
   replicas: 1
   strategy:
@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: frontend-container
-          image: frontfac.azurecr.io/front:5
+          image: frontfac.azurecr.io/front:6
           ports:
             - containerPort: 3000
           env:
